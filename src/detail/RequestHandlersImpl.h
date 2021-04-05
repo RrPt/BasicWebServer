@@ -39,11 +39,12 @@ public:
 
     bool handle(WebServer& server, HTTPMethod requestMethod, String requestUri) override {
         (void) server;
-        if (!canHandle(requestMethod, requestUri))
-            return false;
+		if (!canHandle(requestMethod, requestUri)) {
+			return false;
+		}
 
-        _fn();
-        return true;
+		_fn();
+		return true;
     }
 
     void upload(WebServer& server, String requestUri, HTTPUpload& upload) override {

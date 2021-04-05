@@ -333,7 +333,7 @@ void WebServer::handleClient() {
             _statusChange = millis();
             keepCurrentClient = true;
           }
-        }
+		}
       } else { // !_currentClient.available()
         if (millis() - _statusChange <= HTTP_MAX_DATA_WAIT) {
           keepCurrentClient = true;
@@ -534,7 +534,7 @@ void WebServer::sendJsonDoc(int code, const DynamicJsonDocument  doc)
 			size_t len2 = serializeJson(doc, bufferdClient);
 			bufferdClient.flush();
 
-			Serial.printf("len=%d  len2=%d\n", len, len2);  // todo nur debug
+			//Serial.printf("len=%d  len2=%d\n", len, len2);  // todo nur debug
 
 			if (_chunked) {
 				_currentClient.write(footer, 2);
@@ -706,7 +706,7 @@ void WebServer::_handleRequest() {
   }
   else {
     handled = _currentHandler->handle(*this, _currentMethod, _currentUri);
-    if (!handled) {
+	if (!handled) {
       log_e("request handler failed to handle request");
     }
   }
